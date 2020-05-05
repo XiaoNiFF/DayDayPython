@@ -3,7 +3,7 @@
 ### 常用命令 
 - 在python用pip命令：
   
-  `python -m pip [--default-timeout=100] install <package name>`
+  `python -m pip [--default-timeout=100] install packagename`
 
 - 直接在命令行用pip命令：
   
@@ -21,11 +21,11 @@ http://pypi.douban.com/simple
     `pip install -i http://pypi.douban.com/simple --trusted-host pypi.douban.com packagename`
 
     *#安装pip*  
-    `pip install -i http://e.pypi.python.org --trusted-host e.pypi.python.org --upgrade pip`
+    `pip install -i http://e.pypi.python.org --trusted-host e.pypi.python.org --upgrade packagename`
 
 ## 升级package
 ### 常用命令
-`pip install --upgrade -i http://pypi.douban.com/simple --trusted-host pypi.douban.com pip`
+`pip install --upgrade -i http://pypi.douban.com/simple --trusted-host pypi.douban.com packagename`
 
 ### 出现的问题及解决方法
 1. 命令行提示以下错误ERROR: Could not install packages due to an EnvironmentError: [WinError 5] 拒绝访问。: 'C:\\Users\\bailong\\AppData\\Local\\Temp\\pip-uninstall-jk6d_cjx\\pip.exe'
@@ -34,7 +34,7 @@ Consider using the `--user` option or check the permissions.
 - 解决方法如下:
   
     *加入--user选项*  
-    `pip install --user --upgrade -i http://pypi.douban.com/simple --trusted-host pypi.douban.com pip`
+    `pip install --user --upgrade -i http://pypi.douban.com/simple --trusted-host pypi.douban.com packagename`
 
 ## 其他常用命令
 - *查看已经安装的package*  
