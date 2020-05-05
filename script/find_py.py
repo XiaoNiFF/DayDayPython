@@ -8,7 +8,7 @@ def find_py(path):
         if os.path.isdir(fullPath):
             find_py(fullPath)
         elif fileName[-3:] == '.py':
-            aLi.append(fullPath)
+            aLi.append(fileName)
     return aLi
 
 if __name__ == '__main__':

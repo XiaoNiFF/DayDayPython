@@ -1,9 +1,9 @@
-import calendar as calx
-import time as tm
-
-
-def show_time():
-    tm.strftime(tm.localtime(tm.time()))
+def fib(n):
+    if n == 0 or n == 1:
+        return n
+    else:
+        return fib(n - 1) + fib(n - 2)
 
 if __name__ == "__main__":
-    pr_cal(2020,3)
+    for i in range(11):
+        print(fib(i), end=" ")
