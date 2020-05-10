@@ -8,7 +8,7 @@ class Pachong:
         self.url = url
     
     def get_resp(self):
-        '''Get请求返回（request对象）'''
+        '''Get请求返回（response对象）'''
         headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36 Edg/81.0.416.68'}
         try:
             r = requests.get(self.url, headers = headers)
@@ -19,11 +19,13 @@ class Pachong:
             return 'HTTPError - 请求错误'
 
 def check_ip(ip):
+    '''ip138查询ip信息'''
     url = "https://www.ip138.com/iplookup.asp?ip={}&action=2"
     txt = Pachong(url.format(ip)).get_resp().text
     print(txt[:1000])
 
 def down_pic(root):
+    '''下载url地址的文件到本地'''
     url = "http://image.ngchina.com.cn/2020/0508/20200508022628171.jpg"
     # root = os.getcwd()
     # root = "D://pics//"
@@ -38,10 +40,20 @@ def down_pic(root):
     else:
         print('文件已经存在')
 
+def soup(url):
+    '''输出url地址所有标签'''
+    r = Pachong(url).get_resp()
+    soup = BeautifulSoup(r.text, 'html.parser')
+    for tag in soup.find_all(True):
+        print(tag.name)
+    
+    
 
 
 if __name__ == "__main__":
     # check_ip('220.181.38.148')
-    down_pic(os.getcwd())
+    # down_pic(os.getcwd())
+    soup('https://python123.io/ws/demo.html')
+    
 
 
