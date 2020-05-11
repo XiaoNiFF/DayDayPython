@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import bs4
 import os
 
 class Pachong:
@@ -47,13 +48,50 @@ def soup(url):
     for tag in soup.find_all(True):
         print(tag.name)
     
+
+class Bestdaxue(Pachong):
+    '''Pachong类的派生类'''
+
+    def __getSoup(self):
+        '''定义私有方法，返回soup对象'''
+        r = self.get_resp()
+        soup = BeautifulSoup(r.text, 'lxml')
+        return soup
     
+    def parserHtml(self):
+        '''解析soup，返回包含所有大学的排名,名称,总分'''
+        ls = []
+        soup = self.__getSoup()
+        for tr in soup.tbody.children:
+            if isinstance(tr, bs4.element.Tag):
+                tds = tr('td')
+                ls.append([tds[0].string, tds[1].string, tds[3].string])
+        return ls
+
+    @staticmethod
+    def printFormat(ls, num):
+        '''静态方法，格式化输出'''
+        str = "{0:^10}\t{1:{3}^10}\t{2:^10}"
+        print(str.format('排名', '大学', '总分', chr(12288)))
+        for i in range(num):
+            print(str.format(ls[i][0], ls[i][1], ls[i][2], chr(12288)))
+
+    def showResult(self, num):
+        '''相当于main()函数'''
+        ls = self.parserHtml()
+        self.printFormat(ls, num)
+        self.printFormat
+
+def paiming(num):
+    dxpm = Bestdaxue('http://www.zuihaodaxue.com/zuihaodaxuepaiming2019.html')
+    dxpm.showResult(num)
 
 
 if __name__ == "__main__":
     # check_ip('220.181.38.148')
     # down_pic(os.getcwd())
-    soup('https://python123.io/ws/demo.html')
+    # soup('https://python123.io/ws/demo.html')
+    paiming(100)
     
 
 
